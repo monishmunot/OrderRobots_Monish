@@ -1,0 +1,15 @@
+{
+    "LegElemImage": {
+        "confidence": 80.0,
+        "path": ".images\\legelemimage-path.png",
+        "source": null,
+        "type": "image"
+    },
+    "LegsElement": {
+        "screenshot": ".images\\legselement-screenshot.png",
+        "source": "https://robotsparebinindustries.com/#/robot-order",
+        "strategy": "xpath",
+        "type": "browser",
+        "value": "/html/body/div/div/div[1]/div/div[1]/form/div[3]/input"
+    }
+}
