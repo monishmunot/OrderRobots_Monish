@@ -49,7 +49,7 @@ Submit the order
     Wait Until Page Contains Element    id:robot-preview-image
     #Wait Until Keyword Succeeds   3    10    alert alert-danger
     Click Button    order
-    Sleep   3s
+    Sleep   5s
     Mute Run On Failure     Wait Until Element Is Visible    id:receipt
     Run Keyword And Ignore Error    Wait Until Element Is Visible    id:receipt
 
@@ -87,9 +87,9 @@ Store the receipt as a PDF file
             Html To Pdf    ${order_receipt}    ${CURDIR}${/}output${/}${row}.pdf
             #[Return]    ${CURDIR}${/}output${/}${row}.pdf
     ELSE
-            Sleep   4s
+            Sleep   5s
             Click Button    order
-            Sleep   4s
+            Sleep   5s
             ${order_receipt}=    Get Element Attribute    id:receipt       outerHTML
             Html To Pdf    ${order_receipt}    ${CURDIR}${/}output${/}${row}.pdf
             #[Return]    ${CURDIR}${/}output${/}${row}.pdf
@@ -149,14 +149,14 @@ Order robots from RobotSpareBin Industries Inc
         Fill The Form Using The Data From The CSV File   ${row}
         Preview the robot
         #Submit the order
-        Wait Until Keyword Succeeds    5x    3s    Submit the order
+        Wait Until Keyword Succeeds    5x    5s    Submit the order
         #Wait Until Keyword Succeeds    3x    1s    Check if receipt is generated
-        ${pdf}=    Store the receipt as a PDF file    ${row}[Order number]
+        ${pdf}=    Wait Until Keyword Succeeds    5x    5s    Store the receipt as a PDF file    ${row}[Order number]
         ${screenshot}=    Take a screenshot of the robot    ${row}[Order number]
         Embed the robot screenshot to the receipt PDF file    ${screenshot}    ${pdf}
-        Sleep	2s
+        Sleep	3s
         Go to order another robot
-        Exit For Loop If    ${row}[Order number] == 2
+        #Exit For Loop If    ${row}[Order number] == 2
     END
     Create a ZIP file of the receipts
     Log  Done.
